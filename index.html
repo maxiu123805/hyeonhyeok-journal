@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal of Hyeonhyeok Studies — 현혁 학술연구회지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EE;
+    --ink: #1A1A18;
+    --ink-mid: #4A4845;
+    --ink-light: #8A8780;
+    --ink-faint: #C8C5BE;
+    --accent: #2B4C7E;
+    --accent-light: #EEF2F8;
+    --rule: #D6D2C8;
+    --white: #FFFFFF;
+    --red: #8B2020;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'EB Garamond', 'Noto Serif KR', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--ink);
+    color: #ccc;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar a { color: #aaa; text-decoration: none; margin-left: 1.5rem; }
+  .topbar a:hover { color: #fff; }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 3px double var(--ink);
+    padding: 2rem 2rem 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+  }
+
+  .journal-issn {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .journal-name-kr {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    margin-bottom: 4px;
+  }
+
+  .journal-name-en {
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .journal-tagline {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-top: 6px;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+
+  .vol-badge {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    margin-bottom: 6px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 1.2rem;
+  }
+
+  nav a {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    border-right: 1px solid var(--rule);
+    transition: background 0.15s, color 0.15s;
+  }
+  nav a:first-child { border-left: 1px solid var(--rule); }
+  nav a:hover, nav a.active {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  nav a.admin-link {
+    margin-left: auto;
+    border-left: 1px solid var(--rule);
+    color: var(--accent);
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--white);
+    border-left: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    min-height: 80vh;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+  }
+
+  .main-col {
+    border-right: 1px solid var(--rule);
+    padding: 2rem;
+  }
+
+  .side-col {
+    padding: 2rem 1.5rem;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    white-space: nowrap;
+  }
+
+  .sec-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── PAPER CARDS ── */
+  .paper-card {
+    border: 1px solid var(--rule);
+    margin-bottom: 1.2rem;
+    background: var(--white);
+    transition: box-shadow 0.2s;
+  }
+  .paper-card:hover { box-shadow: 3px 3px 0 var(--ink-faint); }
+
+  .paper-card-inner {
+    padding: 1.2rem 1.4rem;
+  }
+
+  .paper-type-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink-faint);
+    padding: 2px 7px;
+    color: var(--ink-mid);
+    margin-bottom: 0.6rem;
+  }
+  .paper-type-tag.feature { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+  .paper-title {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+  }
+  .paper-title:hover { color: var(--accent); }
+
+  .paper-authors {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-abstract {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    margin-bottom: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .paper-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--rule);
+    font-size: 11px;
+    color: var(--ink-light);
+  }
+
+  .paper-footer-left { display: flex; gap: 1rem; }
+
+  .btn-pdf {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 4px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.15s;
+  }
+  .btn-pdf:hover { background: var(--accent); }
+
+  /* ── KEYWORDS ── */
+  .kw-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 0.5rem;
+  }
+  .kw {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    padding: 2px 8px;
+    color: var(--ink-mid);
+    background: var(--cream);
+  }
+
+  /* ── SIDEBAR ── */
+  .side-block {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .side-block:last-child { border-bottom: none; }
+
+  .side-title {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+  }
+
+  .vol-list { list-style: none; }
+  .vol-list li {
+    font-size: 13px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    color: var(--ink-mid);
+    display: flex;
+    justify-content: space-between;
+  }
+  .vol-list li:hover { color: var(--accent); }
+  .vol-list li span { font-size: 11px; color: var(--ink-faint); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .stat-box {
+    background: var(--cream);
+    padding: 10px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-top: 3px;
+  }
+
+  /* ── ADMIN MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,24,0.7);
+    z-index: 1000;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4rem 1rem;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border: 2px solid var(--ink);
+    width: 100%;
+    max-width: 680px;
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .modal-title {
+    font-size: 22px;
+    margin-bottom: 0.3rem;
+  }
+  .modal-sub {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .form-row {
+    margin-bottom: 1.4rem;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 0.6rem 0.8rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--ink);
+    background: var(--white);
+  }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .file-upload-area {
+    border: 2px dashed var(--rule);
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    background: var(--cream);
+    transition: border-color 0.2s;
+  }
+  .file-upload-area:hover, .file-upload-area.dragover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+  .file-upload-area input[type="file"] {
+    display: none;
+  }
+  .file-upload-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .file-upload-text {
+    font-size: 13px;
+    color: var(--ink-mid);
+  }
+  .file-upload-hint {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 4px;
+  }
+  .file-name-display {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  .kw-input-wrap {
+    display: flex;
+    gap: 8px;
+  }
+  .kw-input-wrap .form-input { flex: 1; }
+
+  .btn-add-kw {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 0 14px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.15s;
+  }
+  .btn-add-kw:hover { background: var(--accent); }
+
+  .kw-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .kw-tag {
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 11px;
+    padding: 3px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .kw-tag-remove {
+    cursor: pointer;
+    opacity: 0.6;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .kw-tag-remove:hover { opacity: 1; }
+
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .btn-cancel {
+    background: none;
+    border: 1px solid var(--rule);
+    padding: 0.6rem 1.4rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--ink-mid);
+    transition: all 0.15s;
+  }
+  .btn-cancel:hover { border-color: var(--ink); color: var(--ink); }
+
+  .btn-submit {
+    background: var(--ink);
+    color: var(--cream);
+    border: 1px solid var(--ink);
+    padding: 0.6rem 2rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-submit:hover { background: var(--accent); border-color: var(--accent); }
+
+  .close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--ink-light);
+    line-height: 1;
+    background: none;
+    border: none;
+  }
+  .close-modal:hover { color: var(--ink); }
+
+  /* ── PAPER DETAIL MODAL ── */
+  .detail-modal .modal { max-width: 760px; }
+
+  .detail-title {
+    font-size: 24px;
+    line-height: 1.3;
+    margin-bottom: 0.6rem;
+  }
+  .detail-authors {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-bottom: 1.2rem;
+  }
+  .detail-meta-strip {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 12px;
+    color: var(--ink-light);
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+  .detail-section-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+  .detail-abstract {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    margin-bottom: 1.5rem;
+  }
+  .detail-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-light);
+    border: 2px dashed var(--rule);
+  }
+  .empty-state-icon { font-size: 40px; margin-bottom: 1rem; }
+  .empty-state-title { font-size: 18px; margin-bottom: 0.5rem; color: var(--ink-mid); }
+  .empty-state-desc { font-size: 13px; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.8rem 1.5rem;
+    font-size: 13px;
+    z-index: 2000;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #888;
+    font-size: 12px;
+    line-height: 1.9;
+    padding: 2.5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .footer-title { color: var(--cream); font-size: 16px; margin-bottom: 0.4rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .content-grid { grid-template-columns: 1fr; }
+    .side-col { border-top: 1px solid var(--rule); }
+    .form-grid-2 { grid-template-columns: 1fr; }
+    .journal-name-en { font-size: 26px; }
+    footer { flex-direction: column; gap: 1.5rem; }
+    .header-top { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>현혁 학술연구회지 — Journal of Hyeonhyeok Studies</span>
+  <div>
+    <a href="#">로그인</a>
+    <a href="#" onclick="openAdmin(); return false;">논문 등록 ＋</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div style="max-width:1100px; margin:0 auto; background:var(--white);">
+  <header>
+    <div class="header-top">
+      <div>
+        <div class="journal-issn">ISSN 2984-7731 &nbsp;·&nbsp; 인문·사회과학 계간지</div>
+        <div class="journal-name-kr">현혁 학술연구회지</div>
+        <div class="journal-name-en">Journal of Hyeonhyeok Studies</div>
+        <div class="journal-tagline">Humanities, Social Theory & Critical Inquiry</div>
+      </div>
+      <div class="header-meta">
+        <div class="vol-badge" id="currentVolBadge">Vol. 1, No. 1</div><br>
+        <span id="currentVolText">2026년 창간호</span><br>
+        연 4회 발간 · Quarterly
+      </div>
+    </div>
+    <nav>
+      <a href="#" class="active" onclick="showSection('current'); return false;">Current Issue</a>
+      <a href="#" onclick="showSection('archive'); return false;">Archive</a>
+      <a href="#" onclick="showSection('about'); return false;">About</a>
+      <a href="#" onclick="showSection('board'); return false;">Editorial Board</a>
+      <a href="#" class="admin-link" onclick="openAdmin(); return false;">＋ 논문 등록</a>
+    </nav>
+  </header>
+</div>
+
+<!-- MAIN -->
+<div class="page-wrap">
+  <div class="content-grid">
+
+    <!-- MAIN COLUMN -->
+    <div class="main-col">
+
+      <!-- CURRENT ISSUE -->
+      <div id="section-current">
+        <div class="sec-header">
+          <span class="sec-label">Current Issue</span>
+          <div class="sec-rule"></div>
+        </div>
+
+        <div id="papers-container">
+          <div class="empty-state">
+            <div class="empty-state-icon">📄</div>
+            <div class="empty-state-title">등록된 논문이 없습니다</div>
+            <div class="empty-state-desc">우측 상단 "논문 등록 ＋" 버튼을 눌러 첫 논문을 추가해보세요.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARCHIVE -->
+      <div id="section-archive" style="display:none;">
+        <div class="sec-header">
+          <span class="sec-label">Archive</span>
+          <div class="sec-rule"></div>
+        </div>
+        <div id="archive-list" style="font-size:14px; color:var(--ink-mid); line-height:2;">
+          <p style="color:var(--ink-light); font-style:italic;">등록된 권호가 없습니다.</p>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div id="section-about" style="display:none;">
+        <div class="sec-header">
+          <span class="sec-label">About</span>
+          <div class="sec-rule"></div>
+        </div>
+        <div style="max-width:600px; font-size:15px; line-height:1.85; color:var(--ink-mid);">
+          <p style="margin-bottom:1.2rem;">
+            <strong style="color:var(--ink);">현혁 학술연구회지</strong>는 인문학 및 사회과학 분야의 연구 성과를 공유하고 담론을 형성하기 위해 창간된 학술 간행물입니다.
+          </p>
+          <p style="margin-bottom:1.2rem;">
+            본 회지는 연 4회(봄·여름·가을·겨울) 발간되며, 투고된 논문은 동료 심사(Peer Review) 과정을 거쳐 게재 여부가 결정됩니다.
+          </p>
+          <p>
+            문의 및 투고: <span style="color:var(--accent);">journal@hyeonhyeok.kr</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- BOARD -->
+      <div id="section-board" style="display:none;">
+        <div class="sec-header">
+          <span class="sec-label">Editorial Board</span>
+          <div class="sec-rule"></div>
+        </div>
+        <div style="font-size:14px; line-height:2; color:var(--ink-mid);">
+          <p><strong style="color:var(--ink);">편집장 (Editor-in-Chief)</strong></p>
+          <p>현혁</p>
+          <br>
+          <p><strong style="color:var(--ink);">편집위원회 (Editorial Board)</strong></p>
+          <p>본 학술연구회지 편집위원회는 현재 구성 중입니다.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="side-col">
+
+      <div class="side-block">
+        <div class="side-title">학술지 정보</div>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="stat-num" id="stat-papers">0</div>
+            <div class="stat-label">논문</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" id="stat-authors">0</div>
+            <div class="stat-label">저자</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" id="stat-issues">1</div>
+            <div class="stat-label">권호</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">7</div>
+            <div class="stat-label">년차</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <div class="side-title">최근 권호</div>
+        <ul class="vol-list" id="vol-list">
+          <li style="color:var(--ink-light); font-style:italic; font-size:12px;">등록된 권호 없음</li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <div class="side-title">주제 분야</div>
+        <div style="font-size:13px; line-height:2.1; color:var(--ink-mid);">
+          인문학 · 사회과학<br>
+          문화이론 · 비판이론<br>
+          역사학 · 철학<br>
+          젠더연구 · 미디어연구
+        </div>
+      </div>
+
+      <div class="side-block">
+        <div class="side-title">투고 안내</div>
+        <div style="font-size:12px; line-height:1.9; color:var(--ink-mid);">
+          원고는 상시 접수합니다.<br>
+          한국어 및 영어 원고 가능.<br>
+          양식은 투고 규정 참조.
+        </div>
+        <button class="btn-submit" style="margin-top:1rem; width:100%; font-size:13px;" onclick="openAdmin()">논문 등록 ＋</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-title">Journal of Hyeonhyeok Studies</div>
+    <div>현혁 학술연구회지 · ISSN 2984-7731</div>
+    <div>연 4회 발간 · Quarterly</div>
+  </div>
+  <div style="text-align:right;">
+    <div>발행: 현혁 학술연구회</div>
+    <div>편집장: 현혁</div>
+    <div style="margin-top:0.5rem; font-size:10px; color:#555;">© 2026 Journal of Hyeonhyeok Studies. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ── ADMIN MODAL ── -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <button class="close-modal" onclick="closeAdmin()">×</button>
+    <div class="modal-title">논문 등록</div>
+    <div class="modal-sub">새 논문을 회지에 등록합니다. * 필수 항목</div>
+
+    <div class="form-row">
+      <label class="form-label">논문 제목 *</label>
+      <input type="text" class="form-input" id="f-title" placeholder="논문 제목을 입력하세요">
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">저자 *</label>
+      <input type="text" class="form-input" id="f-authors" placeholder="홍길동, 김철수 (쉼표로 구분)">
+    </div>
+
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label class="form-label">논문 유형</label>
+        <select class="form-select" id="f-type">
+          <option value="article">Article</option>
+          <option value="feature">Feature Article</option>
+          <option value="review">Review</option>
+          <option value="note">Research Note</option>
+          <option value="editorial">Editorial</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">권호 (예: Vol.7 No.2)</label>
+        <input type="text" class="form-input" id="f-issue" placeholder="Vol.1 No.1">
+      </div>
+    </div>
+
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label class="form-label">페이지</label>
+        <input type="text" class="form-input" id="f-pages" placeholder="pp. 1–30">
+      </div>
+      <div class="form-row">
+        <label class="form-label">DOI</label>
+        <input type="text" class="form-input" id="f-doi" placeholder="10.7731/jhs.2026...">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">초록 (Abstract) *</label>
+      <textarea class="form-textarea" id="f-abstract" placeholder="논문 초록을 입력하세요. 200~300자 권장." style="min-height:130px;"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">키워드</label>
+      <div class="kw-input-wrap">
+        <input type="text" class="form-input" id="f-kw-input" placeholder="키워드 입력 후 추가" onkeydown="if(event.key==='Enter'){addKeyword();event.preventDefault();}">
+        <button class="btn-add-kw" onclick="addKeyword()">＋</button>
+      </div>
+      <div class="kw-tags" id="kw-tags"></div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">PDF 파일 첨부</label>
+      <div class="file-upload-area" id="uploadArea" onclick="document.getElementById('f-file').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)">
+        <input type="file" id="f-file" accept=".pdf" onchange="fileSelected(this)">
+        <span class="file-upload-icon">📎</span>
+        <div class="file-upload-text">클릭하거나 파일을 드래그하여 업로드</div>
+        <div class="file-upload-hint">PDF 파일 지원 · 최대 50MB</div>
+        <div class="file-name-display" id="file-name-display"></div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeAdmin()">취소</button>
+      <button class="btn-submit" onclick="submitPaper()">등록하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── PAPER DETAIL MODAL ── -->
+<div class="modal-overlay detail-modal" id="detailModal">
+  <div class="modal">
+    <button class="close-modal" onclick="closeDetail()">×</button>
+    <div class="paper-type-tag" id="d-type" style="margin-bottom:1rem;"></div>
+    <div class="detail-title" id="d-title"></div>
+    <div class="detail-authors" id="d-authors"></div>
+    <div class="detail-meta-strip">
+      <span id="d-issue"></span>
+      <span id="d-pages"></span>
+      <span id="d-doi"></span>
+    </div>
+    <div class="detail-section-label">Abstract</div>
+    <div class="detail-abstract" id="d-abstract"></div>
+    <div class="detail-section-label">Keywords</div>
+    <div class="kw-list" id="d-keywords"></div>
+    <div class="detail-actions">
+      <a class="btn-pdf" id="d-pdf-link" href="#" target="_blank">PDF 다운로드</a>
+      <button class="btn-cancel" onclick="closeDetail()">닫기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let papers = JSON.parse(localStorage.getItem('jhs_papers') || '[]');
+  let keywords = [];
+  let selectedFile = null;
+  let fileDataURL = null;
+
+  // ── Section nav ──
+  function showSection(id) {
+    ['current','archive','about','board'].forEach(s => {
+      document.getElementById('section-'+s).style.display = s===id ? '' : 'none';
+    });
+    document.querySelectorAll('nav a').forEach((a,i) => a.classList.remove('active'));
+    const idx = ['current','archive','about','board'].indexOf(id);
+    document.querySelectorAll('nav a')[idx].classList.add('active');
+  }
+
+  // ── Render papers ──
+  function render() {
+    const container = document.getElementById('papers-container');
+    if (!papers.length) {
+      container.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📄</div><div class="empty-state-title">등록된 논문이 없습니다</div><div class="empty-state-desc">우측 상단 "논문 등록 ＋" 버튼을 눌러 첫 논문을 추가해보세요.</div></div>`;
+      return;
+    }
+
+    container.innerHTML = papers.map((p, i) => `
+      <div class="paper-card">
+        <div class="paper-card-inner">
+          <span class="paper-type-tag ${p.type==='feature'?'feature':''}">${typeLabel(p.type)}</span>
+          <div class="paper-title" onclick="openDetail(${i})">${p.title}</div>
+          <div class="paper-authors">${p.authors}</div>
+          <div class="paper-abstract">${p.abstract}</div>
+          ${p.keywords && p.keywords.length ? `<div class="kw-list">${p.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>` : ''}
+          <div class="paper-footer">
+            <div class="paper-footer-left">
+              <span>${p.issue || ''}</span>
+              <span>${p.pages || ''}</span>
+              ${p.doi ? `<span>DOI ${p.doi}</span>` : ''}
+            </div>
+            ${p.fileData ? `<a class="btn-pdf" href="${p.fileData}" download="${p.title}.pdf">PDF</a>` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // stats
+    document.getElementById('stat-papers').textContent = papers.length;
+    const authors = new Set(papers.flatMap(p => p.authors.split(',').map(a=>a.trim())));
+    document.getElementById('stat-authors').textContent = authors.size;
+
+    // archive sidebar
+    const issues = [...new Set(papers.map(p => p.issue).filter(Boolean))];
+    const volList = document.getElementById('vol-list');
+    if (issues.length) {
+      volList.innerHTML = issues.map(v => `<li onclick="filterIssue('${v}')">${v} <span>${papers.filter(p=>p.issue===v).length}편</span></li>`).join('');
+    }
+  }
+
+  function typeLabel(t) {
+    return {article:'Article', feature:'Feature Article', review:'Review', note:'Research Note', editorial:'Editorial'}[t] || 'Article';
+  }
+
+  // ── Detail modal ──
+  function openDetail(i) {
+    const p = papers[i];
+    document.getElementById('d-type').textContent = typeLabel(p.type);
+    document.getElementById('d-type').className = `paper-type-tag${p.type==='feature'?' feature':''}`;
+    document.getElementById('d-title').textContent = p.title;
+    document.getElementById('d-authors').textContent = p.authors;
+    document.getElementById('d-issue').textContent = p.issue || '';
+    document.getElementById('d-pages').textContent = p.pages || '';
+    document.getElementById('d-doi').textContent = p.doi ? 'DOI ' + p.doi : '';
+    document.getElementById('d-abstract').textContent = p.abstract;
+    document.getElementById('d-keywords').innerHTML = (p.keywords||[]).map(k=>`<span class="kw">${k}</span>`).join('');
+    const pdfLink = document.getElementById('d-pdf-link');
+    if (p.fileData) {
+      pdfLink.href = p.fileData;
+      pdfLink.style.display = '';
+    } else {
+      pdfLink.style.display = 'none';
+    }
+    document.getElementById('detailModal').classList.add('open');
+  }
+
+  function closeDetail() {
+    document.getElementById('detailModal').classList.remove('open');
+  }
+
+  // ── Admin modal ──
+  function openAdmin() {
+    document.getElementById('adminModal').classList.add('open');
+  }
+
+  function closeAdmin() {
+    document.getElementById('adminModal').classList.remove('open');
+    resetForm();
+  }
+
+  function resetForm() {
+    ['f-title','f-authors','f-issue','f-pages','f-doi','f-abstract','f-kw-input'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('f-type').value = 'article';
+    keywords = [];
+    document.getElementById('kw-tags').innerHTML = '';
+    document.getElementById('file-name-display').textContent = '';
+    selectedFile = null;
+    fileDataURL = null;
+  }
+
+  // ── Keywords ──
+  function addKeyword() {
+    const inp = document.getElementById('f-kw-input');
+    const val = inp.value.trim();
+    if (!val || keywords.includes(val)) { inp.value = ''; return; }
+    keywords.push(val);
+    inp.value = '';
+    renderKwTags();
+  }
+
+  function removeKeyword(idx) {
+    keywords.splice(idx, 1);
+    renderKwTags();
+  }
+
+  function renderKwTags() {
+    document.getElementById('kw-tags').innerHTML = keywords.map((k,i) =>
+      `<span class="kw-tag">${k}<span class="kw-tag-remove" onclick="removeKeyword(${i})">×</span></span>`
+    ).join('');
+  }
+
+  // ── File upload ──
+  function fileSelected(input) {
+    const file = input.files[0];
+    if (!file) return;
+    selectedFile = file;
+    document.getElementById('file-name-display').textContent = '✓ ' + file.name;
+    const reader = new FileReader();
+    reader.onload = e => { fileDataURL = e.target.result; };
+    reader.readAsDataURL(file);
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+    document.getElementById('uploadArea').classList.add('dragover');
+  }
+  function dragLeave(e) {
+    document.getElementById('uploadArea').classList.remove('dragover');
+  }
+  function dropFile(e) {
+    e.preventDefault();
+    document.getElementById('uploadArea').classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+      selectedFile = file;
+      document.getElementById('file-name-display').textContent = '✓ ' + file.name;
+      const reader = new FileReader();
+      reader.onload = ev => { fileDataURL = ev.target.result; };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  // ── Submit ──
+  function submitPaper() {
+    const title = document.getElementById('f-title').value.trim();
+    const authors = document.getElementById('f-authors').value.trim();
+    const abstract = document.getElementById('f-abstract').value.trim();
+    if (!title || !authors || !abstract) {
+      showToast('필수 항목(제목, 저자, 초록)을 입력해주세요.');
+      return;
+    }
+    const paper = {
+      title,
+      authors,
+      abstract,
+      type: document.getElementById('f-type').value,
+      issue: document.getElementById('f-issue').value.trim(),
+      pages: document.getElementById('f-pages').value.trim(),
+      doi: document.getElementById('f-doi').value.trim(),
+      keywords: [...keywords],
+      fileData: fileDataURL,
+      date: new Date().toISOString()
+    };
+    papers.unshift(paper);
+    localStorage.setItem('jhs_papers', JSON.stringify(papers));
+    render();
+    closeAdmin();
+    showToast('논문이 등록되었습니다.');
+  }
+
+  // ── Toast ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // ── Filter by issue ──
+  function filterIssue(issue) {
+    showSection('current');
+    const container = document.getElementById('papers-container');
+    const filtered = papers.filter(p => p.issue === issue);
+    container.innerHTML = `<div style="font-size:12px; color:var(--ink-light); margin-bottom:1rem; letter-spacing:0.06em;">${issue} · ${filtered.length}편 &nbsp;<span style="cursor:pointer;color:var(--accent);" onclick="render()">전체 보기</span></div>` +
+      filtered.map((p, i) => `
+        <div class="paper-card">
+          <div class="paper-card-inner">
+            <span class="paper-type-tag ${p.type==='feature'?'feature':''}">${typeLabel(p.type)}</span>
+            <div class="paper-title" onclick="openDetail(${papers.indexOf(p)})">${p.title}</div>
+            <div class="paper-authors">${p.authors}</div>
+            <div class="paper-abstract">${p.abstract}</div>
+            <div class="paper-footer">
+              <div class="paper-footer-left">
+                <span>${p.pages||''}</span>
+                ${p.doi?`<span>DOI ${p.doi}</span>`:''}
+              </div>
+              ${p.fileData?`<a class="btn-pdf" href="${p.fileData}" download="${p.title}.pdf">PDF</a>`:''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+  }
+
+  // ── Close modals on overlay click ──
+  document.getElementById('adminModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
+  });
+  document.getElementById('detailModal').addEventListener('click', function(e) {
+    if (e.target === this) closeDetail();
+  });
+
+  render();
+</script>
+</body>
+</html>
